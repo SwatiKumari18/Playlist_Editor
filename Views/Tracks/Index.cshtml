@@ -1,0 +1,39 @@
+@model IEnumerable<SK2247A3.ViewModels.TrackWithDetailViewModel>
+
+<h2>List of tracks</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Track Name</th>
+            <th>Composer</th>
+            <th>Length (ms)</th>
+            <th>Unit Price</th>
+            <th>Album title</th>
+            <th>Artist Name</th>
+            <th>Media type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Composer</td>
+                <td>@item.Milliseconds</td>
+                <td>$@item.UnitPrice</td>
+                <td>@item.AlbumTitle</td>
+                <td>@item.AlbumArtistName</td>
+                <td>@item.MediaTypeName</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.TrackId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

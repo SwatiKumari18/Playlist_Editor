@@ -1,0 +1,28 @@
+@model IEnumerable<SK2247A3.ViewModels.PlaylistBaseViewModel>
+
+<h2>Playlists</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Playlist Name</th>
+            <th>Playlist Track Count</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <span class="badge bg-primary">@item.TracksCount</span>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PlaylistId }) | 
+                    @Html.ActionLink("Details", "Details", new { id = item.PlaylistId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

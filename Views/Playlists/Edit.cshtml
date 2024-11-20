@@ -1,0 +1,106 @@
+@model SK2247A3.ViewModels.PlaylistEditTracksFormViewModel
+
+@{
+    ViewBag.Title = "Edit Playlist";
+}
+
+<h3>
+    Edit playlist
+    <div style="background-color: lightblue; padding: 10px; display: inline-block;">@Model.Name</div>
+</h3>
+
+<p>Select tracks, and click the "Save changes" button</p>
+<br />
+
+@*<p>
+        <button type="submit" class="btn btn-primary mt-3">Save changes</button>
+        @Html.ActionLink("Back to Details", "Details", new { id = Model.PlaylistId }) |
+        <a href="@Url.Action("Index")">Back to List</a>
+    </p> <br />*@
+
+
+@using (Html.BeginForm("Edit", "Playlists", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save changes" class="btn btn-primary" />
+            @Html.ActionLink("Back to Details", "Details", new { id = Model.PlaylistId }) |
+            @Html.ActionLink("Back to List", "Index", null, new { })
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <!-- Left Column: All Tracks with checkboxes -->
+        <div class="col-md-6">
+            <h4>All tracks</h4>
+            @foreach (var track in Model.AllTracks)
+            {
+                <div class="form-check">
+                    <input type="checkbox" name="SelectedTrackIds" value="@track.Value"
+                           @(Model.SelectedTrackIds.Contains(int.Parse(track.Value)) ? "checked" : "") />
+                    <label>@track.Text</label>
+                    @*@Html.CheckBox("SelectedTrackIds", new { value = track.Value, @class = "form-check-input" })*@
+                    @*<label class="form-check-label" for="SelectedTrackIds">@track.Text</label>*@
+                </div>
+            }
+        </div>
+
+        <!-- Right Column: Tracks currently in playlist -->
+        <div class="col-md-6">
+            <h4>
+                Now on playlist
+                <span class="badge bg-dark">@Model.TracksCount</span>
+            </h4>
+            <div class="card p-2 bg-light">
+                @foreach (var track in Model.CurrentTracks)
+                {
+                    <p>@track.Name</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    @*<button type="submit" class="btn btn-primary mt-3">Save changes</button>*@
+}
+
+
+
+
+
+
+
+
+@*@model SK2247A3.ViewModels.PlaylistEditTracksFormViewModel
+
+    <h2>Edit playlist @Model.PlaylistName</h2>
+    <p>Select tracks, and click the "Save changes" button</p>
+
+    @using (Html.BeginForm("Index", "Playlist", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.PlaylistId)
+
+        <div>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            @Html.ActionLink("Back to Details", "Details", new { id = Model.PlaylistId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Back to List", "Index", "Playlist", new { @class = "btn btn-default" })
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>All tracks</h3>
+                @Html.ListBoxFor(model => model.SelectedTrackIds, Model.AllTracks, new { @class = "form-control", size = 20 })
+            </div>
+            <div class="col-md-6">
+                <h3>Now on playlist</h3>
+                <ul class="list-group">
+                    @foreach (var track in Model.SelectedTracks)
+                    {
+                        <li class="list-group-item">@track.Name - @track.Milliseconds minutes - $@track.UnitPrice</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }*@

@@ -1,0 +1,30 @@
+@model SK2247A3.ViewModels.TrackWithDetailViewModel
+
+<h2>Track Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Track Name</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">Composer</dt>
+    <dd class="col-sm-9">@Model.Composer</dd>
+
+    <dt class="col-sm-3">Length (ms)</dt>
+    <dd class="col-sm-9">@Model.Milliseconds</dd>
+
+    <dt class="col-sm-3">Unit Price</dt>
+    <dd class="col-sm-9">$@Model.UnitPrice</dd>
+
+    <dt class="col-sm-3">Album title</dt>
+    <dd class="col-sm-9">@Model.AlbumTitle</dd>
+
+    <dt class="col-sm-3">Artist Name</dt>
+    <dd class="col-sm-9">@Model.AlbumArtistName</dd>
+
+    <dt class="col-sm-3">Media type</dt>
+    <dd class="col-sm-9">@Model.MediaTypeName</dd>
+</dl>
+
+<p>
+    <a href="@Url.Action("Index")">Back to List</a>
+</p>

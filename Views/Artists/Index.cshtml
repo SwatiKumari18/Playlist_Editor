@@ -1,0 +1,21 @@
+@model IEnumerable<SK2247A3.ViewModels.ArtistBaseViewModel>
+
+<h2>Artists</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ArtistId</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

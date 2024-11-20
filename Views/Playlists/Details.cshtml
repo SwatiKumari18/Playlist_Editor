@@ -1,0 +1,32 @@
+@model SK2247A3.ViewModels.PlaylistWithDetailViewModel
+
+<h2>
+    Playlist details
+    <div style="background-color: lightblue; padding: 10px; display: inline-block;">@Model.Name</div>
+</h2>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlaylistId }) |
+    <a href="@Url.Action("Index")">Back to List</a>
+</p>
+
+<dl class="row">
+    <dt class="col-sm-3">Playlist Name</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">Tracks on the Playlist</dt>
+    <dd class="col-sm-9">
+        <span class="badge bg-dark">@Model.TracksCount</span> <br />
+        @foreach (var track in Model.Tracks)
+        {
+                @track.Name<br />
+        }
+
+    </dd>
+
+</dl>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlaylistId }) |
+    <a href="@Url.Action("Index")">Back to List</a>
+</p>

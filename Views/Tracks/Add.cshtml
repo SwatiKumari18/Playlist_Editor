@@ -1,0 +1,68 @@
+@model SK2247A3.ViewModels.TrackAddFormViewModel
+
+@{
+    ViewData["Title"] = "Add Track";
+}
+
+<h2>Add New Track</h2>
+
+<p>Complete the form, and click the Create button</p>
+
+@using (Html.BeginForm("Add", "Tracks", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, "Name")
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Composer, "Composer")
+        @Html.TextBoxFor(model => model.Composer, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Composer, "", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Milliseconds, "Length (ms)")
+        @Html.TextBoxFor(model => model.Milliseconds, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Milliseconds, "", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UnitPrice, "Unit price")
+        @Html.TextBoxFor(model => model.UnitPrice, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.Label("Album")
+        @Html.DropDownListFor(model => model.SelectedAlbumId, new SelectList(Model.Albums, "Value", "Text"), new { @class = "form-control", size = 10 })
+        @Html.ValidationMessageFor(model => model.SelectedAlbumId, "", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.Label("Media Type")
+        <div>
+            @foreach (var mediaType in Model.MediaTypes)
+            {
+                <div class="form-check form-check-inline">
+                    @Html.RadioButtonFor(model => model.SelectedMediaTypeId, mediaType.Value, new { @class = "form-check-input" })
+                    <label class="form-check-label" for="mediaType">@mediaType.Text</label>
+                </div>
+            }
+        </div>
+        @Html.ValidationMessageFor(model => model.SelectedMediaTypeId, "", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+}
